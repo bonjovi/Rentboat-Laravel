@@ -242,8 +242,7 @@ $(document).ready(function() {
 		$(".top .dropdown, .search-group, .mob-menu").slideUp(300);
 	});
 
-	$(".dropdown, .search a ,.search-group, .mob-menu").click(function(e) {
-		e.preventDefault();
+	$(".dropdown, .search a,.search-group, .mob-menu").click(function(e) {
 		e.stopPropagation();
 	});
 	$(".add-form-item, .add-items button").click(function(event) {
@@ -325,6 +324,65 @@ $(document).ready(function() {
 	return false;
 	});
 	
+
+	$("#arend_date").on('focusout', function() {
+		var ts = Date.parse($("#arend_date").val())/1000;
+		var timestamp = new Date(+ts * 1000);
+		var month= timestamp.getMonth();
+		var arr=[
+		   'Января',
+		   'Февраля',
+		   'Марта',
+		   'Апреля',
+		   'Мая',
+		   'Июня',
+		   'Июля',
+		   'Августа',
+		   'Сентября',
+		   'Октября',
+		   'Ноября',
+		   'Декабря',
+		];
+		$(".bron-date h5").text(timestamp.getDate() + ' ' + arr[month]);
+		if ($("#arend_srok").val() >= 86400) {
+			var ass = +$("#arend_srok").val() + Date.parse($("#arend_date").val())/1000;
+			var tims = new Date(ass * 1000);
+			var month= tims.getMonth();
+			$(".bron-date h5").text(timestamp.getDate() + ' ' + arr[month] + ' - ' + tims.getDate() + ' ' + arr[month]);
+		}
+
+	});
+
+	$("#arend_srok").on('change', function() {
+		if ($("#arend_date").val()) {
+			var ts = Date.parse($("#arend_date").val())/1000;
+			var timestamp = new Date(+ts * 1000);
+			var month= timestamp.getMonth();
+			var arr=[
+			   'Января',
+			   'Февраля',
+			   'Марта',
+			   'Апреля',
+			   'Мая',
+			   'Июня',
+			   'Июля',
+			   'Августа',
+			   'Сентября',
+			   'Октября',
+			   'Ноября',
+			   'Декабря',
+			];
+			if ($("#arend_srok").val() >= 86400) {
+				var ass = +$("#arend_srok").val() + Date.parse($("#arend_date").val())/1000;
+				var tims = new Date(ass * 1000);
+				var month= tims.getMonth();
+				$(".bron-date h5").text(timestamp.getDate() + ' ' + arr[month] + ' - ' + tims.getDate() + ' ' + arr[month]);
+			}else{
+				$(".bron-date h5").text(timestamp.getDate() + ' ' + arr[month]);
+			}
+		}
+	});
+
 
 	
 

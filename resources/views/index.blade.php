@@ -131,316 +131,49 @@
 		<div class="container">
 			<h2 class="title"><span>наши лодки с безупречной репутацией</span></h2>
 			<div class="product-items">
-				<div class="col">
-					<div class="product-item">
-						<div class="product-item-img">
-							<img class="lazyload" data-src="img/item.jpg" alt="">
-						</div>
-						<div class="product-item-caption">
-							<span class="product-item-cat">Моторная яхта</span>
-							<h4><a href="#">Dufour 335 Grand Large (2004)</a></h4>
-							<div class="product-item-price flex">
-								<span class="new-price">1 500 $ <span>/день</span></span>
-								<span class="old-price">2 000 $ <span>/день</span></span>
+				@foreach ($boats as $boat)
+					<div class="col">
+						<div class="product-item">
+							<div class="product-item-img">
+								<img class="lazyload" data-src="{{ $boat->mainpic }}" alt="{{ $boat->name }}">
 							</div>
-							<div class="product-item-rating flex">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star2.png" alt="">
-								<span class="rating-text">4.0</span>
-							</div>
-							<div class="product-item-city">MILAN <span>/ ITALY</span></div>
-							<div class="product-item-info flex">
-								<div>
-									<img class="lazyload" data-src="img/people.png" alt=""> 10
+							<div class="product-item-caption">
+								<span class="product-item-cat">{{ $boat->type_name }}</span>
+								<h4><a href="/catalog/{{ $boat->slug }}">{{ $boat->name }}</a></h4>
+								<div class="product-item-price flex">
+									<span class="new-price">1 500 $ <span>/день</span></span>
+									<span class="old-price">2 000 $ <span>/день</span></span>
 								</div>
-								<div>
-									<img class="lazyload" data-src="img/bed.png" alt=""> 6
+								<div class="product-item-rating flex">
+									<img class="lazyload" data-src="img/star.png" alt="">
+									<img class="lazyload" data-src="img/star.png" alt="">
+									<img class="lazyload" data-src="img/star.png" alt="">
+									<img class="lazyload" data-src="img/star.png" alt="">
+									<img class="lazyload" data-src="img/star2.png" alt="">
+									<span class="rating-text">4.0</span>
 								</div>
-								<div>
-									<img class="lazyload" data-src="img/boat.png" alt=""> 176 ft
+								<div class="product-item-city">{{ $boat->city_name }} <span>/ {{ $boat->country_name }}</span></div>
+								<div class="product-item-info flex">
+									<div>
+										<img class="lazyload" data-src="img/people.png" alt=""> {{ $boat->guests_qty }}
+									</div>
+									<div>
+										<img class="lazyload" data-src="img/bed.png" alt=""> {{ $boat->bedrooms_qty }}
+									</div>
+									<div>
+										<img class="lazyload" data-src="img/boat.png" alt=""> {{ $boat->size }} ft
+									</div>
 								</div>
-							</div>
-							<div class="product-item-bottom flex">
-								<a href="#" class="btn">подробнее</a>
-								<a href="#" class="wish"></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="product-item">
-						<div class="product-item-img">
-							<img class="lazyload" data-src="img/item2.jpg" alt="">
-						</div>
-						<div class="product-item-caption">
-							<span class="product-item-cat">Моторная яхта</span>
-							<h4><a href="#">Dufour 335 Grand Large (2004)</a></h4>
-							<div class="product-item-price flex">
-								<span>29 899 ₽ <span>/день</span></span>
-							</div>
-							<div class="product-item-rating flex">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star2.png" alt="">
-								<span class="rating-text">4.0</span>
-							</div>
-							<div class="product-item-city">MILAN <span>/ ITALY</span></div>
-							<div class="product-item-info flex">
-								<div>
-									<img class="lazyload" data-src="img/people.png" alt=""> 10
+								<div class="product-item-bottom flex">
+									<a href="/catalog/{{ $boat->slug }}" class="btn">подробнее</a>
+									<a href="#" class="wish"></a>
 								</div>
-								<div>
-									<img class="lazyload" data-src="img/bed.png" alt=""> 6
-								</div>
-								<div>
-									<img class="lazyload" data-src="img/boat.png" alt=""> 176 ft
-								</div>
-							</div>
-							<div class="product-item-bottom flex">
-								<a href="#" class="btn">подробнее</a>
-								<a href="#" class="wish"></a>
 							</div>
 						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="product-item">
-						<div class="product-item-img">
-							<img class="lazyload" data-src="img/item.jpg" alt="">
-						</div>
-						<div class="product-item-caption">
-							<span class="product-item-cat">Моторная яхта</span>
-							<h4><a href="#">Dufour 335 Grand Large (2004)</a></h4>
-							<div class="product-item-price flex">
-								<span class="new-price">1 500 $ <span>/день</span></span>
-								<span class="old-price">2 000 $ <span>/день</span></span>
-							</div>
-							<div class="product-item-rating flex">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star2.png" alt="">
-								<span class="rating-text">4.0</span>
-							</div>
-							<div class="product-item-city">MILAN <span>/ ITALY</span></div>
-							<div class="product-item-info flex">
-								<div>
-									<img class="lazyload" data-src="img/people.png" alt=""> 10
-								</div>
-								<div>
-									<img class="lazyload" data-src="img/bed.png" alt=""> 6
-								</div>
-								<div>
-									<img class="lazyload" data-src="img/boat.png" alt=""> 176 ft
-								</div>
-							</div>
-							<div class="product-item-bottom flex">
-								<a href="#" class="btn">подробнее</a>
-								<a href="#" class="wish"></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="product-item">
-						<div class="product-item-img">
-							<img class="lazyload" data-src="img/item2.jpg" alt="">
-						</div>
-						<div class="product-item-caption">
-							<span class="product-item-cat">Моторная яхта</span>
-							<h4><a href="#">Dufour 335 Grand Large (2004)</a></h4>
-							<div class="product-item-price flex">
-								<span>29 899 ₽ <span>/день</span></span>
-							</div>
-							<div class="product-item-rating flex">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star2.png" alt="">
-								<span class="rating-text">4.0</span>
-							</div>
-							<div class="product-item-city">MILAN <span>/ ITALY</span></div>
-							<div class="product-item-info flex">
-								<div>
-									<img class="lazyload" data-src="img/people.png" alt=""> 10
-								</div>
-								<div>
-									<img class="lazyload" data-src="img/bed.png" alt=""> 6
-								</div>
-								<div>
-									<img class="lazyload" data-src="img/boat.png" alt=""> 176 ft
-								</div>
-							</div>
-							<div class="product-item-bottom flex">
-								<a href="#" class="btn">подробнее</a>
-								<a href="#" class="wish"></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="product-item">
-						<div class="product-item-img">
-							<img class="lazyload" data-src="img/item.jpg" alt="">
-						</div>
-						<div class="product-item-caption">
-							<span class="product-item-cat">Моторная яхта</span>
-							<h4><a href="#">Dufour 335 Grand Large (2004)</a></h4>
-							<div class="product-item-price flex">
-								<span class="new-price">1 500 $ <span>/день</span></span>
-								<span class="old-price">2 000 $ <span>/день</span></span>
-							</div>
-							<div class="product-item-rating flex">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star2.png" alt="">
-								<span class="rating-text">4.0</span>
-							</div>
-							<div class="product-item-city">MILAN <span>/ ITALY</span></div>
-							<div class="product-item-info flex">
-								<div>
-									<img class="lazyload" data-src="img/people.png" alt=""> 10
-								</div>
-								<div>
-									<img class="lazyload" data-src="img/bed.png" alt=""> 6
-								</div>
-								<div>
-									<img class="lazyload" data-src="img/boat.png" alt=""> 176 ft
-								</div>
-							</div>
-							<div class="product-item-bottom flex">
-								<a href="#" class="btn">подробнее</a>
-								<a href="#" class="wish"></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="product-item">
-						<div class="product-item-img">
-							<img class="lazyload" data-src="img/item2.jpg" alt="">
-						</div>
-						<div class="product-item-caption">
-							<span class="product-item-cat">Моторная яхта</span>
-							<h4><a href="#">Dufour 335 Grand Large (2004)</a></h4>
-							<div class="product-item-price flex">
-								<span>29 899 ₽ <span>/день</span></span>
-							</div>
-							<div class="product-item-rating flex">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star2.png" alt="">
-								<span class="rating-text">4.0</span>
-							</div>
-							<div class="product-item-city">MILAN <span>/ ITALY</span></div>
-							<div class="product-item-info flex">
-								<div>
-									<img class="lazyload" data-src="img/people.png" alt=""> 10
-								</div>
-								<div>
-									<img class="lazyload" data-src="img/bed.png" alt=""> 6
-								</div>
-								<div>
-									<img class="lazyload" data-src="img/boat.png" alt=""> 176 ft
-								</div>
-							</div>
-							<div class="product-item-bottom flex">
-								<a href="#" class="btn">подробнее</a>
-								<a href="#" class="wish"></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="product-item">
-						<div class="product-item-img">
-							<img class="lazyload" data-src="img/item.jpg" alt="">
-						</div>
-						<div class="product-item-caption">
-							<span class="product-item-cat">Моторная яхта</span>
-							<h4><a href="#">Dufour 335 Grand Large (2004)</a></h4>
-							<div class="product-item-price flex">
-								<span class="new-price">1 500 $ <span>/день</span></span>
-								<span class="old-price">2 000 $ <span>/день</span></span>
-							</div>
-							<div class="product-item-rating flex">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star2.png" alt="">
-								<span class="rating-text">4.0</span>
-							</div>
-							<div class="product-item-city">MILAN <span>/ ITALY</span></div>
-							<div class="product-item-info flex">
-								<div>
-									<img class="lazyload" data-src="img/people.png" alt=""> 10
-								</div>
-								<div>
-									<img class="lazyload" data-src="img/bed.png" alt=""> 6
-								</div>
-								<div>
-									<img class="lazyload" data-src="img/boat.png" alt=""> 176 ft
-								</div>
-							</div>
-							<div class="product-item-bottom flex">
-								<a href="#" class="btn">подробнее</a>
-								<a href="#" class="wish"></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="product-item">
-						<div class="product-item-img">
-							<img class="lazyload" data-src="img/item2.jpg" alt="">
-						</div>
-						<div class="product-item-caption">
-							<span class="product-item-cat">Моторная яхта</span>
-							<h4><a href="#">Dufour 335 Grand Large (2004)</a></h4>
-							<div class="product-item-price flex">
-								<span>29 899 ₽ <span>/день</span></span>
-							</div>
-							<div class="product-item-rating flex">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star.png" alt="">
-								<img class="lazyload" data-src="img/star2.png" alt="">
-								<span class="rating-text">4.0</span>
-							</div>
-							<div class="product-item-city">MILAN <span>/ ITALY</span></div>
-							<div class="product-item-info flex">
-								<div>
-									<img class="lazyload" data-src="img/people.png" alt=""> 10
-								</div>
-								<div>
-									<img class="lazyload" data-src="img/bed.png" alt=""> 6
-								</div>
-								<div>
-									<img class="lazyload" data-src="img/boat.png" alt=""> 176 ft
-								</div>
-							</div>
-							<div class="product-item-bottom flex">
-								<a href="#" class="btn">подробнее</a>
-								<a href="#" class="wish"></a>
-							</div>
-						</div>
-					</div>
-				</div>
+					</div>‭
+				@endforeach
 			</div>
-			<a href="#" class="more">смотреть все лодки</a>
+			<a href="{{ route('boats.index') }}" class="more">смотреть все лодки</a>
 		</div>
 	</div>
 
@@ -775,124 +508,33 @@
 				<div class="right">
 					<div class="swiper-container">
 						<div class="swiper-wrapper">
-							<div class="swiper-slide">
-								<div class="review">
-									<img class="lazyload" data-src="img/quote.png" alt="">
-									<p>Провели с друзьями незабываемый отдых на яхте. Спасибо сервису Rent Boat за предоставленную возможность легко и просто арендовать яхту на свой вкус и возможный бюджет. Особенно понравился капитан данной яхты. Очень добрый и приятный парень! Возил аккуратно, шампанское не разлили :))) Так же удобно забронировать яхту будучи в другом городе. Спасибо еще раз, было шикарно!</p>
-									<div class="review-author flex">
-										<div class="review-author-img">
-											<img class="lazyload" data-src="img/review-author.png" alt="">
-										</div>
-										<div class="review-author-info">
-											<h4>Александра Костылева</h4>
-											<p>MILAN <span>/ ITALY</span></p>
-										</div>
-									</div>
-									<div class="review-bottom">
-										<p>
-											Арендованная <br> яхта
-											<img src="img/vector.png" alt="">
-										</p>
-										<img src="img/arend1.png" alt="">
-										<a href="#" class="btn">хочу такую же</a>
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="review">
-									<img class="lazyload" data-src="img/quote.png" alt="">
-									<p>Провели с друзьями незабываемый отдых на яхте. Спасибо сервису Rent Boat за предоставленную возможность легко и просто арендовать яхту на свой вкус и возможный бюджет. Особенно понравился капитан данной яхты. Очень добрый и приятный парень! Возил аккуратно, шампанское не разлили :))) Так же удобно забронировать яхту будучи в другом городе. Спасибо еще раз, было шикарно!</p>
-									<div class="review-author flex">
-										<div class="review-author-img">
-											<img class="lazyload" data-src="img/review-author.png" alt="">
-										</div>
-										<div class="review-author-info">
-											<h4>Александра Костылева</h4>
-											<p>MILAN <span>/ ITALY</span></p>
+							@foreach($reviews as $review)
+								@if($review->user_role_id != 3)
+									<div class="swiper-slide">
+										<div class="review">
+											<img class="lazyload" data-src="img/quote.png" alt="">
+											{!! $review->text !!}
+											<div class="review-author flex">
+												<div class="review-author-img">
+													<img class="lazyload" data-src="/storage/{{ $review->user_avatar }}" alt="" width="61">
+												</div>
+												<div class="review-author-info">
+													<h4>{{ $review->user_name }}</h4>
+													<p>{{ $review->city_name }} <span>/ {{ $review->country_name }}</span></p>
+												</div>
+											</div>
+											<div class="review-bottom">
+												<p>
+													Арендованная <br> яхта
+													<img src="img/vector.png" alt="">
+												</p>
+												<img src="{{ $review->boat_mainpic }}" alt="">
+												<a href="{{ $review->link }}" class="btn">хочу такую же</a>
+											</div>
 										</div>
 									</div>
-									<div class="review-bottom">
-											<img src="img/arend.png" alt="">
-											<a href="#" class="btn">хочу такую же</a>
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="review">
-									<img class="lazyload" data-src="img/quote.png" alt="">
-									<p>Провели с друзьями незабываемый отдых на яхте. Спасибо сервису Rent Boat за предоставленную возможность легко и просто арендовать яхту на свой вкус и возможный бюджет. Особенно понравился капитан данной яхты. Очень добрый и приятный парень! Возил аккуратно, шампанское не разлили :))) Так же удобно забронировать яхту будучи в другом городе. Спасибо еще раз, было шикарно!</p>
-									<div class="review-author flex">
-										<div class="review-author-img">
-											<img class="lazyload" data-src="img/review-author.png" alt="">
-										</div>
-										<div class="review-author-info">
-											<h4>Александра Костылева</h4>
-											<p>MILAN <span>/ ITALY</span></p>
-										</div>
-									</div>
-									<div class="review-bottom">
-											<img src="img/arend.png" alt="">
-											<a href="#" class="btn">хочу такую же</a>
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="review">
-									<img class="lazyload" data-src="img/quote.png" alt="">
-									<p>Провели с друзьями незабываемый отдых на яхте. Спасибо сервису Rent Boat за предоставленную возможность легко и просто арендовать яхту на свой вкус и возможный бюджет. Особенно понравился капитан данной яхты. Очень добрый и приятный парень! Возил аккуратно, шампанское не разлили :))) Так же удобно забронировать яхту будучи в другом городе. Спасибо еще раз, было шикарно!</p>
-									<div class="review-author flex">
-										<div class="review-author-img">
-											<img class="lazyload" data-src="img/review-author.png" alt="">
-										</div>
-										<div class="review-author-info">
-											<h4>Александра Костылева</h4>
-											<p>MILAN <span>/ ITALY</span></p>
-										</div>
-									</div>
-									<div class="review-bottom">
-											<img src="img/arend.png" alt="">
-											<a href="#" class="btn">хочу такую же</a>
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="review">
-									<img class="lazyload" data-src="img/quote.png" alt="">
-									<p>Провели с друзьями незабываемый отдых на яхте. Спасибо сервису Rent Boat за предоставленную возможность легко и просто арендовать яхту на свой вкус и возможный бюджет. Особенно понравился капитан данной яхты. Очень добрый и приятный парень! Возил аккуратно, шампанское не разлили :))) Так же удобно забронировать яхту будучи в другом городе. Спасибо еще раз, было шикарно!</p>
-									<div class="review-author flex">
-										<div class="review-author-img">
-											<img class="lazyload" data-src="img/review-author.png" alt="">
-										</div>
-										<div class="review-author-info">
-											<h4>Александра Костылева</h4>
-											<p>MILAN <span>/ ITALY</span></p>
-										</div>
-									</div>
-									<div class="review-bottom">
-											<img src="img/arend.png" alt="">
-											<a href="#" class="btn">хочу такую же</a>
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="review">
-									<img class="lazyload" data-src="img/quote.png" alt="">
-									<p>Провели с друзьями незабываемый отдых на яхте. Спасибо сервису Rent Boat за предоставленную возможность легко и просто арендовать яхту на свой вкус и возможный бюджет. Особенно понравился капитан данной яхты. Очень добрый и приятный парень! Возил аккуратно, шампанское не разлили :))) Так же удобно забронировать яхту будучи в другом городе. Спасибо еще раз, было шикарно!</p>
-									<div class="review-author flex">
-										<div class="review-author-img">
-											<img class="lazyload" data-src="img/review-author.png" alt="">
-										</div>
-										<div class="review-author-info">
-											<h4>Александра Костылева</h4>
-											<p>MILAN <span>/ ITALY</span></p>
-										</div>
-									</div>
-									<div class="review-bottom">
-											<img src="img/arend.png" alt="">
-											<a href="#" class="btn">хочу такую же</a>
-									</div>
-								</div>
-							</div>
+								@endif
+							@endforeach
 						</div>
 					</div>					
 
@@ -913,324 +555,63 @@
 				<div class="left">
 					<div class="swiper-container">
 						<div class="swiper-wrapper">
-							<div class="swiper-slide">
-								<div class="review">
-									<img class="lazyload" data-src="img/quote.png" alt="">
-									<p>Провели с друзьями незабываемый отдых на яхте. Спасибо сервису Rent Boat за предоставленную возможность легко и просто арендовать яхту на свой вкус и возможный бюджет. Особенно понравился капитан данной яхты. Очень добрый и приятный парень! Возил аккуратно, шампанское не разлили :))) Так же удобно забронировать яхту будучи в другом городе. Спасибо еще раз, было шикарно!</p>
-									<div class="review-author flex">
-										<div class="review-author-img">
-											<img class="lazyload" data-src="img/review-author.png" alt="">
+							@foreach($reviews as $review)
+								@if($review->user_role_id == 3)
+									<div class="swiper-slide">
+										<div class="review">
+											<img class="lazyload" data-src="img/quote.png" alt="">
+											{!! $review->text !!}
+											<div class="review-author flex">
+												<div class="review-author-img">
+													<img class="lazyload" data-src="/storage/{{ $review->user_avatar }}" alt="" width="61">
+												</div>
+												<div class="review-author-info">
+													<h4>{{ $review->user_name }}</h4>
+													<p>{{ $review->city_name }} <span>/ {{ $review->country_name }}</span></p>
+												</div>
+											</div>
 										</div>
-										<div class="review-author-info">
-											<h4>Александра Костылева</h4>
-											<p>MILAN <span>/ ITALY</span></p>
-										</div>
-									</div>
-								</div>
 
-								<div class="product-item flex">
-									<div class="product-item-img">
-										<img class="lazyload" data-src="img/item-quad.png" alt="">
-									</div>
-									<div class="product-item-caption">
-										<span class="product-item-cat">Моторная яхта</span>
-										<h4><a href="#">Dufour 335 Grand Large (2004)</a></h4>
-										<div class="product-item-price flex">
-											<span class="new-price">1 500 $ <span>/день</span></span>
-											<span class="old-price">2 000 $ <span>/день</span></span>
-										</div>
-										<div class="product-item-rating flex">
-											<img class="lazyload" data-src="img/star.png" alt="">
-											<img class="lazyload" data-src="img/star.png" alt="">
-											<img class="lazyload" data-src="img/star.png" alt="">
-											<img class="lazyload" data-src="img/star.png" alt="">
-											<img class="lazyload" data-src="img/star2.png" alt="">
-											<span class="rating-text">4.0</span>
-										</div>
-										<div class="product-item-city">MILAN <span>/ ITALY</span></div>
-										<div class="product-item-info flex">
-											<div>
-												<img class="lazyload" data-src="img/people.png" alt=""> 10
+										<div class="product-item flex">
+											<div class="product-item-img">
+												<img class="lazyload" data-src="img/item-quad.png" alt="">
 											</div>
-											<div>
-												<img class="lazyload" data-src="img/bed.png" alt=""> 6
+											<div class="product-item-caption">
+												<span class="product-item-cat">{{ $review->boat_type_name }}</span>
+												<h4><a href="#">{{ $review->boat_name }} ({{ $review->boat_year }})</a></h4>
+												<div class="product-item-price flex">
+													<span class="new-price">1 500 $ <span>/день</span></span>
+													<span class="old-price">2 000 $ <span>/день</span></span>
+												</div>
+												<div class="product-item-rating flex">
+													<img class="lazyload" data-src="img/star.png" alt="">
+													<img class="lazyload" data-src="img/star.png" alt="">
+													<img class="lazyload" data-src="img/star.png" alt="">
+													<img class="lazyload" data-src="img/star.png" alt="">
+													<img class="lazyload" data-src="img/star2.png" alt="">
+													<span class="rating-text">4.0</span>
+												</div>
+												<div class="product-item-city">{{ $review->city_name }} <span>/ {{ $review->country_name }}</span></div>
+												<div class="product-item-info flex">
+													<div>
+														<img class="lazyload" data-src="img/people.png" alt=""> {{ $review->boat_guests_qty }}
+													</div>
+													<div>
+														<img class="lazyload" data-src="img/bed.png" alt=""> {{ $review->boat_sleepers_qty }}
+													</div>
+													<div>
+														<img class="lazyload" data-src="img/boat.png" alt=""> {{ $review->boat_size }} ft
+													</div>
+												</div>
+												<div class="product-item-bottom flex">
+													<a href="/catalog/{{ $review->boat_slug }}" class="btn">подробнее</a>
+													<a href="#" class="wish"></a>
+												</div>
 											</div>
-											<div>
-												<img class="lazyload" data-src="img/boat.png" alt=""> 176 ft
-											</div>
-										</div>
-										<div class="product-item-bottom flex">
-											<a href="#" class="btn">подробнее</a>
-											<a href="#" class="wish"></a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="review">
-									<img class="lazyload" data-src="img/quote.png" alt="">
-									<p>Провели с друзьями незабываемый отдых на яхте. Спасибо сервису Rent Boat за предоставленную возможность легко и просто арендовать яхту на свой вкус и возможный бюджет. Особенно понравился капитан данной яхты. Очень добрый и приятный парень! Возил аккуратно, шампанское не разлили :))) Так же удобно забронировать яхту будучи в другом городе. Спасибо еще раз, было шикарно!</p>
-									<div class="review-author flex">
-										<div class="review-author-img">
-											<img class="lazyload" data-src="img/review-author.png" alt="">
-										</div>
-										<div class="review-author-info">
-											<h4>Александра Костылева</h4>
-											<p>MILAN <span>/ ITALY</span></p>
 										</div>
 									</div>
-								</div>
-
-								<div class="product-item flex">
-									<div class="product-item-img">
-										<img class="lazyload" data-src="img/item-quad.png" alt="">
-									</div>
-									<div class="product-item-caption">
-										<span class="product-item-cat">Моторная яхта</span>
-										<h4><a href="#">Dufour 335 Grand Large (2004)</a></h4>
-										<div class="product-item-price flex">
-											<span class="new-price">1 500 $ <span>/день</span></span>
-											<span class="old-price">2 000 $ <span>/день</span></span>
-										</div>
-										<div class="product-item-rating flex">
-											<img class="lazyload" data-src="img/star.png" alt="">
-											<img class="lazyload" data-src="img/star.png" alt="">
-											<img class="lazyload" data-src="img/star.png" alt="">
-											<img class="lazyload" data-src="img/star.png" alt="">
-											<img class="lazyload" data-src="img/star2.png" alt="">
-											<span class="rating-text">4.0</span>
-										</div>
-										<div class="product-item-city">MILAN <span>/ ITALY</span></div>
-										<div class="product-item-info flex">
-											<div>
-												<img class="lazyload" data-src="img/people.png" alt=""> 10
-											</div>
-											<div>
-												<img class="lazyload" data-src="img/bed.png" alt=""> 6
-											</div>
-											<div>
-												<img class="lazyload" data-src="img/boat.png" alt=""> 176 ft
-											</div>
-										</div>
-										<div class="product-item-bottom flex">
-											<a href="#" class="btn">подробнее</a>
-											<a href="#" class="wish"></a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="review">
-									<img class="lazyload" data-src="img/quote.png" alt="">
-									<p>Провели с друзьями незабываемый отдых на яхте. Спасибо сервису Rent Boat за предоставленную возможность легко и просто арендовать яхту на свой вкус и возможный бюджет. Особенно понравился капитан данной яхты. Очень добрый и приятный парень! Возил аккуратно, шампанское не разлили :))) Так же удобно забронировать яхту будучи в другом городе. Спасибо еще раз, было шикарно!</p>
-									<div class="review-author flex">
-										<div class="review-author-img">
-											<img class="lazyload" data-src="img/review-author.png" alt="">
-										</div>
-										<div class="review-author-info">
-											<h4>Александра Костылева</h4>
-											<p>MILAN <span>/ ITALY</span></p>
-										</div>
-									</div>
-								</div>
-
-								<div class="product-item flex">
-									<div class="product-item-img">
-										<img class="lazyload" data-src="img/item-quad.png" alt="">
-									</div>
-									<div class="product-item-caption">
-										<span class="product-item-cat">Моторная яхта</span>
-										<h4><a href="#">Dufour 335 Grand Large (2004)</a></h4>
-										<div class="product-item-price flex">
-											<span class="new-price">1 500 $ <span>/день</span></span>
-											<span class="old-price">2 000 $ <span>/день</span></span>
-										</div>
-										<div class="product-item-rating flex">
-											<img class="lazyload" data-src="img/star.png" alt="">
-											<img class="lazyload" data-src="img/star.png" alt="">
-											<img class="lazyload" data-src="img/star.png" alt="">
-											<img class="lazyload" data-src="img/star.png" alt="">
-											<img class="lazyload" data-src="img/star2.png" alt="">
-											<span class="rating-text">4.0</span>
-										</div>
-										<div class="product-item-city">MILAN <span>/ ITALY</span></div>
-										<div class="product-item-info flex">
-											<div>
-												<img class="lazyload" data-src="img/people.png" alt=""> 10
-											</div>
-											<div>
-												<img class="lazyload" data-src="img/bed.png" alt=""> 6
-											</div>
-											<div>
-												<img class="lazyload" data-src="img/boat.png" alt=""> 176 ft
-											</div>
-										</div>
-										<div class="product-item-bottom flex">
-											<a href="#" class="btn">подробнее</a>
-											<a href="#" class="wish"></a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="review">
-									<img class="lazyload" data-src="img/quote.png" alt="">
-									<p>Провели с друзьями незабываемый отдых на яхте. Спасибо сервису Rent Boat за предоставленную возможность легко и просто арендовать яхту на свой вкус и возможный бюджет. Особенно понравился капитан данной яхты. Очень добрый и приятный парень! Возил аккуратно, шампанское не разлили :))) Так же удобно забронировать яхту будучи в другом городе. Спасибо еще раз, было шикарно!</p>
-									<div class="review-author flex">
-										<div class="review-author-img">
-											<img class="lazyload" data-src="img/review-author.png" alt="">
-										</div>
-										<div class="review-author-info">
-											<h4>Александра Костылева</h4>
-											<p>MILAN <span>/ ITALY</span></p>
-										</div>
-									</div>
-								</div>
-
-								<div class="product-item flex">
-									<div class="product-item-img">
-										<img class="lazyload" data-src="img/item-quad.png" alt="">
-									</div>
-									<div class="product-item-caption">
-										<span class="product-item-cat">Моторная яхта</span>
-										<h4><a href="#">Dufour 335 Grand Large (2004)</a></h4>
-										<div class="product-item-price flex">
-											<span class="new-price">1 500 $ <span>/день</span></span>
-											<span class="old-price">2 000 $ <span>/день</span></span>
-										</div>
-										<div class="product-item-rating flex">
-											<img class="lazyload" data-src="img/star.png" alt="">
-											<img class="lazyload" data-src="img/star.png" alt="">
-											<img class="lazyload" data-src="img/star.png" alt="">
-											<img class="lazyload" data-src="img/star.png" alt="">
-											<img class="lazyload" data-src="img/star2.png" alt="">
-											<span class="rating-text">4.0</span>
-										</div>
-										<div class="product-item-city">MILAN <span>/ ITALY</span></div>
-										<div class="product-item-info flex">
-											<div>
-												<img class="lazyload" data-src="img/people.png" alt=""> 10
-											</div>
-											<div>
-												<img class="lazyload" data-src="img/bed.png" alt=""> 6
-											</div>
-											<div>
-												<img class="lazyload" data-src="img/boat.png" alt=""> 176 ft
-											</div>
-										</div>
-										<div class="product-item-bottom flex">
-											<a href="#" class="btn">подробнее</a>
-											<a href="#" class="wish"></a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="review">
-									<img class="lazyload" data-src="img/quote.png" alt="">
-									<p>Провели с друзьями незабываемый отдых на яхте. Спасибо сервису Rent Boat за предоставленную возможность легко и просто арендовать яхту на свой вкус и возможный бюджет. Особенно понравился капитан данной яхты. Очень добрый и приятный парень! Возил аккуратно, шампанское не разлили :))) Так же удобно забронировать яхту будучи в другом городе. Спасибо еще раз, было шикарно!</p>
-									<div class="review-author flex">
-										<div class="review-author-img">
-											<img class="lazyload" data-src="img/review-author.png" alt="">
-										</div>
-										<div class="review-author-info">
-											<h4>Александра Костылева</h4>
-											<p>MILAN <span>/ ITALY</span></p>
-										</div>
-									</div>
-								</div>
-
-								<div class="product-item flex">
-									<div class="product-item-img">
-										<img class="lazyload" data-src="img/item-quad.png" alt="">
-									</div>
-									<div class="product-item-caption">
-										<span class="product-item-cat">Моторная яхта</span>
-										<h4><a href="#">Dufour 335 Grand Large (2004)</a></h4>
-										<div class="product-item-price flex">
-											<span class="new-price">1 500 $ <span>/день</span></span>
-											<span class="old-price">2 000 $ <span>/день</span></span>
-										</div>
-										<div class="product-item-rating flex">
-											<img class="lazyload" data-src="img/star.png" alt="">
-											<img class="lazyload" data-src="img/star.png" alt="">
-											<img class="lazyload" data-src="img/star.png" alt="">
-											<img class="lazyload" data-src="img/star.png" alt="">
-											<img class="lazyload" data-src="img/star2.png" alt="">
-											<span class="rating-text">4.0</span>
-										</div>
-										<div class="product-item-city">MILAN <span>/ ITALY</span></div>
-										<div class="product-item-info flex">
-											<div>
-												<img class="lazyload" data-src="img/people.png" alt=""> 10
-											</div>
-											<div>
-												<img class="lazyload" data-src="img/bed.png" alt=""> 6
-											</div>
-											<div>
-												<img class="lazyload" data-src="img/boat.png" alt=""> 176 ft
-											</div>
-										</div>
-										<div class="product-item-bottom flex">
-											<a href="#" class="btn">подробнее</a>
-											<a href="#" class="wish"></a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="review">
-									<img class="lazyload" data-src="img/quote.png" alt="">
-									<p>Провели с друзьями незабываемый отдых на яхте. Спасибо сервису Rent Boat за предоставленную возможность легко и просто арендовать яхту на свой вкус и возможный бюджет. Особенно понравился капитан данной яхты. Очень добрый и приятный парень! Возил аккуратно, шампанское не разлили :))) Так же удобно забронировать яхту будучи в другом городе. Спасибо еще раз, было шикарно!</p>
-									<div class="review-author flex">
-										<div class="review-author-img">
-											<img class="lazyload" data-src="img/review-author.png" alt="">
-										</div>
-										<div class="review-author-info">
-											<h4>Александра Костылева</h4>
-											<p>MILAN <span>/ ITALY</span></p>
-										</div>
-									</div>
-								</div>
-
-								<div class="product-item flex">
-									<div class="product-item-img">
-										<img class="lazyload" data-src="img/item-quad.png" alt="">
-									</div>
-									<div class="product-item-caption">
-										<span class="product-item-cat">Моторная яхта</span>
-										<h4><a href="#">Dufour 335 Grand Large (2004)</a></h4>
-										<div class="product-item-price flex">
-											<span class="new-price">1 500 $ <span>/день</span></span>
-											<span class="old-price">2 000 $ <span>/день</span></span>
-										</div>
-										<div class="product-item-rating flex">
-											<img class="lazyload" data-src="img/star.png" alt="">
-											<img class="lazyload" data-src="img/star.png" alt="">
-											<img class="lazyload" data-src="img/star.png" alt="">
-											<img class="lazyload" data-src="img/star.png" alt="">
-											<img class="lazyload" data-src="img/star2.png" alt="">
-											<span class="rating-text">4.0</span>
-										</div>
-										<div class="product-item-city">MILAN <span>/ ITALY</span></div>
-										<div class="product-item-info flex">
-											<div>
-												<img class="lazyload" data-src="img/people.png" alt=""> 10
-											</div>
-											<div>
-												<img class="lazyload" data-src="img/bed.png" alt=""> 6
-											</div>
-											<div>
-												<img class="lazyload" data-src="img/boat.png" alt=""> 176 ft
-											</div>
-										</div>
-										<div class="product-item-bottom flex">
-											<a href="#" class="btn">подробнее</a>
-											<a href="#" class="wish"></a>
-										</div>
-									</div>
-								</div>
-							</div>
+								@endif
+							@endforeach
 						</div>
 					</div>
 

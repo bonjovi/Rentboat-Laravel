@@ -1,0 +1,28 @@
+.filter-tags span a {
+    cursor: pointer;
+}
+
+.register-button, .boat-adding-button {
+    background: #C0232A;
+    border-radius: 4px;
+    font-family: 'Circe';
+    font-size: 12px;
+    font-weight: 800;
+    text-align: center;
+    border: 1px solid #C0232A;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    color: #fff;
+    display: block;
+    margin-bottom: 22px;
+    height: 50px;
+    line-height: 48px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.invalid-feedback {
+    color: #C0232A;
+    margin: 0 0 15px 0;
+    display: block;
+}

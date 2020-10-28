@@ -7,19 +7,19 @@
 				<div class="swiper-container">
 					<div class="swiper-wrapper">
 						<div class="swiper-slide">
-							<img src="img/super-yacht.jpg" alt="">
+							<img src="{{ $boat->mainpic }}" alt="">
 						</div>
 						<div class="swiper-slide">
-							<img src="img/super-yacht.jpg" alt="">
+							<img src="{{ $boat->mainpic }}" alt="">
 						</div>
 						<div class="swiper-slide">
-							<img src="img/super-yacht.jpg" alt="">
+							<img src="{{ $boat->mainpic }}" alt="">
 						</div>
 						<div class="swiper-slide">
-							<img src="img/super-yacht.jpg" alt="">
+							<img src="{{ $boat->mainpic }}" alt="">
 						</div>
 						<div class="swiper-slide">
-							<img src="img/super-yacht.jpg" alt="">
+							<img src="{{ $boat->mainpic }}" alt="">
 						</div>
 					</div>
 				</div>
@@ -48,30 +48,30 @@
 					<div class="right">
 						<div class="product-caption">
 							<div class="product-caption-shield">
-								<img src="img/shield2.png" alt="">
+								<img src="/img/shield2.png" alt="">
 								<p>Собственник предоставил <br> документы</p>
 							</div>
-							<span class="product-item-cat">Моторная яхта</span>
-							<h4>All Inclusive 80ft Luxury Motor Yacht</h4>
-							<span class="product-caption-year">2004 г.</span>
+							<span class="product-item-cat">{{ $boat->type_name }}</span>
+							<h4>{{ $boat->name }}</h4>
+							<span class="product-caption-year">{{ $boat->year }} г.</span>
 							<div class="product-item-rating flex">
-								<img src="img/star.png" alt="">
-								<img src="img/star.png" alt="">
-								<img src="img/star.png" alt="">
-								<img src="img/star.png" alt="">
-								<img src="img/star2.png" alt="">
+								<img src="/img/star.png" alt="">
+								<img src="/img/star.png" alt="">
+								<img src="/img/star.png" alt="">
+								<img src="/img/star.png" alt="">
+								<img src="/img/star2.png" alt="">
 								<span class="rating-text">4.0</span>
 							</div>
-							<div class="product-item-city">MILAN <span>/ ITALY</span></div>
+							<div class="product-item-city">{{ $boat->city_name }} <span>/ {{ $boat->country_name }}</span></div>
 							<div class="product-item-info flex">
 								<div>
-									<img src="img/people.png" alt=""> 10
+									<img src="/img/people.png" alt=""> {{ $boat->guests_qty }}
 								</div>
 								<div>
-									<img src="img/bed.png" alt=""> 6
+									<img src="/img/bed.png" alt=""> {{ $boat->bedrooms_qty }}
 								</div>
 								<div>
-									<img src="img/boat.png" alt=""> 176 ft
+									<img src="/img/boat.png" alt=""> {{ $boat->size }} ft
 								</div>
 							</div>
 							<a href="#more-detals" class="product-caption-more">+ Подробные детали яхты</a>
@@ -111,11 +111,23 @@
 								<div class="bron-items">
 									<label>
 										<h5>Капитан</h5>
-										<span>Да</span>
+										<span>
+											@if($boat->with_capitan)
+												Да
+											@else
+												Нет	
+											@endif
+										</span>
 									</label>
 									<label>
 										<h5>Топливо</h5>
-										<span>Да</span>
+										<span>
+											@if($boat->fuel_included)
+												Да
+											@else
+												Нет	
+											@endif
+										</span>
 									</label>
 								</div>
 								<div class="bron-warning"><span>* Все налоги и сборы включены</span></div>
@@ -298,7 +310,7 @@
 			</div>
 
 			<div class="product-owner">
-				<div class="product-owner-img"><img src="img/owner.png" alt=""></div>
+				<div class="product-owner-img"><img src="/img/owner.png" alt=""></div>
 				<div class="product-owner-info">
 					<h4>Alexander Manchadov</h4>
 					<p>Member since July 2019</p>
@@ -311,25 +323,25 @@
 				<div class="swiper-container">
 					<div class="swiper-wrapper">
 						<div class="swiper-slide">
-							<a href="img/59.jpg"><img src="img/59.jpg" alt=""></a>
+							<a href="img/59.jpg"><img src="/img/59.jpg" alt=""></a>
 						</div>
 						<div class="swiper-slide">
-							<a href="img/59.jpg"><img src="img/59.jpg" alt=""></a>
+							<a href="img/59.jpg"><img src="/img/59.jpg" alt=""></a>
 						</div>
 						<div class="swiper-slide">
-							<a href="img/59.jpg"><img src="img/59.jpg" alt=""></a>
+							<a href="img/59.jpg"><img src="/img/59.jpg" alt=""></a>
 						</div>
 						<div class="swiper-slide">
-							<a href="img/59.jpg"><img src="img/59.jpg" alt=""></a>
+							<a href="img/59.jpg"><img src="/img/59.jpg" alt=""></a>
 						</div>
 						<div class="swiper-slide">
-							<a href="img/59.jpg"><img src="img/59.jpg" alt=""></a>
+							<a href="img/59.jpg"><img src="/img/59.jpg" alt=""></a>
 						</div>
 						<div class="swiper-slide">
-							<a href="img/59.jpg"><img src="img/59.jpg" alt=""></a>
+							<a href="img/59.jpg"><img src="/img/59.jpg" alt=""></a>
 						</div>
 						<div class="swiper-slide">
-							<a href="img/59.jpg"><img src="img/59.jpg" alt=""></a>
+							<a href="img/59.jpg"><img src="/img/59.jpg" alt=""></a>
 						</div>
 					</div>
 				</div>
@@ -365,90 +377,29 @@
 				</div>
 
 				<div class="comments-block">
-					<div class="comment-item flex">
+					@foreach($reviews as $review)
+						<div class="comment-item flex">
 						<div class="comment-item-img">
-							<img src="img/review-author.png" alt="">
-							<span>21 сентября, 2019</span>
+							<img src="/storage/{{ $review->user_avatar }}" alt="">
+							<span>{{ Date::parse($review->created_at)->format('j F Y г.') }}</span>
 						</div>
 						<div class="comment-item-info">
-							<h4>Александра Костылева</h4>
+							<h4>{{ $review->user_name }}</h4>
 							<div class="flex">
-								<div class="product-item-city">MILAN <span>/ ITALY</span></div>
+								<div class="product-item-city">{{ $review->city_name }} <span>/ {{ $review->country_name }}</span></div>
 								<div class="product-item-rating flex">
-									<img src="img/star.png" alt="">
-									<img src="img/star.png" alt="">
-									<img src="img/star.png" alt="">
-									<img src="img/star.png" alt="">
-									<img src="img/star2.png" alt="">
+									<img src="/img/star.png" alt="">
+									<img src="/img/star.png" alt="">
+									<img src="/img/star.png" alt="">
+									<img src="/img/star.png" alt="">
+									<img src="/img/star2.png" alt="">
 									<span class="rating-text">4.0</span>
 								</div>
 							</div>
 							<p>Провели с друзьями незабываемый отдых на яхте. Спасибо сервису Rent Boat за предоставленную возможность легко и просто арендовать яхту на свой вкус и возможный бюджет. Особенно понравился капитан данной яхты. Очень добрый и приятный парень! Возил аккуратно, шампанское не разлили :))) Так же удобно забронировать яхту будучи в другом городе. Спасибо еще раз, было шикарно!</p>
 						</div>
 					</div>
-					<div class="comment-item flex">
-						<div class="comment-item-img">
-							<img src="img/review-author.png" alt="">
-							<span>21 сентября, 2019</span>
-						</div>
-						<div class="comment-item-info">
-							<h4>Александра Костылева</h4>
-							<div class="flex">
-								<div class="product-item-city">MILAN <span>/ ITALY</span></div>
-								<div class="product-item-rating flex">
-									<img src="img/star.png" alt="">
-									<img src="img/star.png" alt="">
-									<img src="img/star.png" alt="">
-									<img src="img/star.png" alt="">
-									<img src="img/star2.png" alt="">
-									<span class="rating-text">4.0</span>
-								</div>
-							</div>
-							<p>Провели с друзьями незабываемый отдых на яхте. Спасибо сервису Rent Boat за предоставленную возможность легко и просто арендовать яхту на свой вкус и возможный бюджет. Особенно понравился капитан данной яхты. Очень добрый и приятный парень! Возил аккуратно, шампанское не разлили :))) Так же удобно забронировать яхту будучи в другом городе. Спасибо еще раз, было шикарно!</p>
-						</div>
-					</div>
-					<div class="comment-item flex">
-						<div class="comment-item-img">
-							<img src="img/review-author.png" alt="">
-							<span>21 сентября, 2019</span>
-						</div>
-						<div class="comment-item-info">
-							<h4>Александра Костылева</h4>
-							<div class="flex">
-								<div class="product-item-city">MILAN <span>/ ITALY</span></div>
-								<div class="product-item-rating flex">
-									<img src="img/star.png" alt="">
-									<img src="img/star.png" alt="">
-									<img src="img/star.png" alt="">
-									<img src="img/star.png" alt="">
-									<img src="img/star2.png" alt="">
-									<span class="rating-text">4.0</span>
-								</div>
-							</div>
-							<p>Провели с друзьями незабываемый отдых на яхте. Спасибо сервису Rent Boat за предоставленную возможность легко и просто арендовать яхту на свой вкус и возможный бюджет. Особенно понравился капитан данной яхты. Очень добрый и приятный парень! Возил аккуратно, шампанское не разлили :))) Так же удобно забронировать яхту будучи в другом городе. Спасибо еще раз, было шикарно!</p>
-						</div>
-					</div>
-					<div class="comment-item flex">
-						<div class="comment-item-img">
-							<img src="img/review-author.png" alt="">
-							<span>21 сентября, 2019</span>
-						</div>
-						<div class="comment-item-info">
-							<h4>Александра Костылева</h4>
-							<div class="flex">
-								<div class="product-item-city">MILAN <span>/ ITALY</span></div>
-								<div class="product-item-rating flex">
-									<img src="img/star.png" alt="">
-									<img src="img/star.png" alt="">
-									<img src="img/star.png" alt="">
-									<img src="img/star.png" alt="">
-									<img src="img/star2.png" alt="">
-									<span class="rating-text">4.0</span>
-								</div>
-							</div>
-							<p>Провели с друзьями незабываемый отдых на яхте. Спасибо сервису Rent Boat за предоставленную возможность легко и просто арендовать яхту на свой вкус и возможный бюджет. Особенно понравился капитан данной яхты. Очень добрый и приятный парень! Возил аккуратно, шампанское не разлили :))) Так же удобно забронировать яхту будучи в другом городе. Спасибо еще раз, было шикарно!</p>
-						</div>
-					</div>
+					@endforeach
 				</div>
 				<a href="#" class="comments-more">
 					<span>Показать еще отзывы</span>
@@ -462,7 +413,7 @@
 						<div class="swiper-slide">
 							<div class="product-item">
 								<div class="product-item-img">
-									<img src="img/item.jpg" alt="">
+									<img src="/img/item.jpg" alt="">
 								</div>
 								<div class="product-item-caption">
 									<span class="product-item-cat">Моторная яхта</span>
@@ -472,23 +423,23 @@
 										<span class="old-price">2 000 $ <span>/день</span></span>
 									</div>
 									<div class="product-item-rating flex">
-										<img src="img/star.png" alt="">
-										<img src="img/star.png" alt="">
-										<img src="img/star.png" alt="">
-										<img src="img/star.png" alt="">
-										<img src="img/star2.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star2.png" alt="">
 										<span class="rating-text">4.0</span>
 									</div>
 									<div class="product-item-city">MILAN <span>/ ITALY</span></div>
 									<div class="product-item-info flex">
 										<div>
-											<img src="img/people.png" alt=""> 10
+											<img src="/img/people.png" alt=""> 10
 										</div>
 										<div>
-											<img src="img/bed.png" alt=""> 6
+											<img src="/img/bed.png" alt=""> 6
 										</div>
 										<div>
-											<img src="img/boat.png" alt=""> 176 ft
+											<img src="/img/boat.png" alt=""> 176 ft
 										</div>
 									</div>
 									<div class="product-item-bottom flex">
@@ -501,7 +452,7 @@
 						<div class="swiper-slide">
 							<div class="product-item">
 								<div class="product-item-img">
-									<img src="img/item.jpg" alt="">
+									<img src="/img/item.jpg" alt="">
 								</div>
 								<div class="product-item-caption">
 									<span class="product-item-cat">Моторная яхта</span>
@@ -511,23 +462,23 @@
 										<span class="old-price">2 000 $ <span>/день</span></span>
 									</div>
 									<div class="product-item-rating flex">
-										<img src="img/star.png" alt="">
-										<img src="img/star.png" alt="">
-										<img src="img/star.png" alt="">
-										<img src="img/star.png" alt="">
-										<img src="img/star2.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star2.png" alt="">
 										<span class="rating-text">4.0</span>
 									</div>
 									<div class="product-item-city">MILAN <span>/ ITALY</span></div>
 									<div class="product-item-info flex">
 										<div>
-											<img src="img/people.png" alt=""> 10
+											<img src="/img/people.png" alt=""> 10
 										</div>
 										<div>
-											<img src="img/bed.png" alt=""> 6
+											<img src="/img/bed.png" alt=""> 6
 										</div>
 										<div>
-											<img src="img/boat.png" alt=""> 176 ft
+											<img src="/img/boat.png" alt=""> 176 ft
 										</div>
 									</div>
 									<div class="product-item-bottom flex">
@@ -540,7 +491,7 @@
 						<div class="swiper-slide">
 							<div class="product-item">
 								<div class="product-item-img">
-									<img src="img/item.jpg" alt="">
+									<img src="/img/item.jpg" alt="">
 								</div>
 								<div class="product-item-caption">
 									<span class="product-item-cat">Моторная яхта</span>
@@ -550,23 +501,23 @@
 										<span class="old-price">2 000 $ <span>/день</span></span>
 									</div>
 									<div class="product-item-rating flex">
-										<img src="img/star.png" alt="">
-										<img src="img/star.png" alt="">
-										<img src="img/star.png" alt="">
-										<img src="img/star.png" alt="">
-										<img src="img/star2.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star2.png" alt="">
 										<span class="rating-text">4.0</span>
 									</div>
 									<div class="product-item-city">MILAN <span>/ ITALY</span></div>
 									<div class="product-item-info flex">
 										<div>
-											<img src="img/people.png" alt=""> 10
+											<img src="/img/people.png" alt=""> 10
 										</div>
 										<div>
-											<img src="img/bed.png" alt=""> 6
+											<img src="/img/bed.png" alt=""> 6
 										</div>
 										<div>
-											<img src="img/boat.png" alt=""> 176 ft
+											<img src="/img/boat.png" alt=""> 176 ft
 										</div>
 									</div>
 									<div class="product-item-bottom flex">
@@ -579,7 +530,7 @@
 						<div class="swiper-slide">
 							<div class="product-item">
 								<div class="product-item-img">
-									<img src="img/item.jpg" alt="">
+									<img src="/img/item.jpg" alt="">
 								</div>
 								<div class="product-item-caption">
 									<span class="product-item-cat">Моторная яхта</span>
@@ -589,23 +540,23 @@
 										<span class="old-price">2 000 $ <span>/день</span></span>
 									</div>
 									<div class="product-item-rating flex">
-										<img src="img/star.png" alt="">
-										<img src="img/star.png" alt="">
-										<img src="img/star.png" alt="">
-										<img src="img/star.png" alt="">
-										<img src="img/star2.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star2.png" alt="">
 										<span class="rating-text">4.0</span>
 									</div>
 									<div class="product-item-city">MILAN <span>/ ITALY</span></div>
 									<div class="product-item-info flex">
 										<div>
-											<img src="img/people.png" alt=""> 10
+											<img src="/img/people.png" alt=""> 10
 										</div>
 										<div>
-											<img src="img/bed.png" alt=""> 6
+											<img src="/img/bed.png" alt=""> 6
 										</div>
 										<div>
-											<img src="img/boat.png" alt=""> 176 ft
+											<img src="/img/boat.png" alt=""> 176 ft
 										</div>
 									</div>
 									<div class="product-item-bottom flex">
@@ -618,7 +569,7 @@
 						<div class="swiper-slide">
 							<div class="product-item">
 								<div class="product-item-img">
-									<img src="img/item.jpg" alt="">
+									<img src="/img/item.jpg" alt="">
 								</div>
 								<div class="product-item-caption">
 									<span class="product-item-cat">Моторная яхта</span>
@@ -628,23 +579,23 @@
 										<span class="old-price">2 000 $ <span>/день</span></span>
 									</div>
 									<div class="product-item-rating flex">
-										<img src="img/star.png" alt="">
-										<img src="img/star.png" alt="">
-										<img src="img/star.png" alt="">
-										<img src="img/star.png" alt="">
-										<img src="img/star2.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star2.png" alt="">
 										<span class="rating-text">4.0</span>
 									</div>
 									<div class="product-item-city">MILAN <span>/ ITALY</span></div>
 									<div class="product-item-info flex">
 										<div>
-											<img src="img/people.png" alt=""> 10
+											<img src="/img/people.png" alt=""> 10
 										</div>
 										<div>
-											<img src="img/bed.png" alt=""> 6
+											<img src="/img/bed.png" alt=""> 6
 										</div>
 										<div>
-											<img src="img/boat.png" alt=""> 176 ft
+											<img src="/img/boat.png" alt=""> 176 ft
 										</div>
 									</div>
 									<div class="product-item-bottom flex">
@@ -657,7 +608,7 @@
 						<div class="swiper-slide">
 							<div class="product-item">
 								<div class="product-item-img">
-									<img src="img/item.jpg" alt="">
+									<img src="/img/item.jpg" alt="">
 								</div>
 								<div class="product-item-caption">
 									<span class="product-item-cat">Моторная яхта</span>
@@ -667,23 +618,23 @@
 										<span class="old-price">2 000 $ <span>/день</span></span>
 									</div>
 									<div class="product-item-rating flex">
-										<img src="img/star.png" alt="">
-										<img src="img/star.png" alt="">
-										<img src="img/star.png" alt="">
-										<img src="img/star.png" alt="">
-										<img src="img/star2.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star2.png" alt="">
 										<span class="rating-text">4.0</span>
 									</div>
 									<div class="product-item-city">MILAN <span>/ ITALY</span></div>
 									<div class="product-item-info flex">
 										<div>
-											<img src="img/people.png" alt=""> 10
+											<img src="/img/people.png" alt=""> 10
 										</div>
 										<div>
-											<img src="img/bed.png" alt=""> 6
+											<img src="/img/bed.png" alt=""> 6
 										</div>
 										<div>
-											<img src="img/boat.png" alt=""> 176 ft
+											<img src="/img/boat.png" alt=""> 176 ft
 										</div>
 									</div>
 									<div class="product-item-bottom flex">
@@ -696,7 +647,7 @@
 						<div class="swiper-slide">
 							<div class="product-item">
 								<div class="product-item-img">
-									<img src="img/item.jpg" alt="">
+									<img src="/img/item.jpg" alt="">
 								</div>
 								<div class="product-item-caption">
 									<span class="product-item-cat">Моторная яхта</span>
@@ -706,23 +657,23 @@
 										<span class="old-price">2 000 $ <span>/день</span></span>
 									</div>
 									<div class="product-item-rating flex">
-										<img src="img/star.png" alt="">
-										<img src="img/star.png" alt="">
-										<img src="img/star.png" alt="">
-										<img src="img/star.png" alt="">
-										<img src="img/star2.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star.png" alt="">
+										<img src="/img/star2.png" alt="">
 										<span class="rating-text">4.0</span>
 									</div>
 									<div class="product-item-city">MILAN <span>/ ITALY</span></div>
 									<div class="product-item-info flex">
 										<div>
-											<img src="img/people.png" alt=""> 10
+											<img src="/img/people.png" alt=""> 10
 										</div>
 										<div>
-											<img src="img/bed.png" alt=""> 6
+											<img src="/img/bed.png" alt=""> 6
 										</div>
 										<div>
-											<img src="img/boat.png" alt=""> 176 ft
+											<img src="/img/boat.png" alt=""> 176 ft
 										</div>
 									</div>
 									<div class="product-item-bottom flex">
@@ -739,4 +690,10 @@
 			</div>
 		</div>
     </div>
+
+	<script>
+		$(function() {
+			$('html').scrollTop(0);
+		});
+	</script>
     @endsection

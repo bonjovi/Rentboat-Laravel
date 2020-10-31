@@ -15,7 +15,7 @@ class PostController extends Controller
         return view('blog', compact('posts', 'tags'));
     }
 
-    public function postsbytag($slug) {
+    public function postsbytag($language, $slug) {
         $posts = Post::withAnyTags([$slug])->get();
         $currenttag = $slug;
 
@@ -23,14 +23,14 @@ class PostController extends Controller
         return view('blog', compact('posts', 'tags', 'currenttag'));
     }
 
-    public function post($slug) {
+    public function post($language, $slug) {
         $post = Post::select(
             'posts.*',
             'users.name as user_name'
         )
             ->join('users', 'posts.author_id', '=', 'users.id')
             ->where('slug', $slug)
-            ->firstOrFail();
+            ->firstOrFail()->translate($language);
 
         $post_id = $post->id;
 

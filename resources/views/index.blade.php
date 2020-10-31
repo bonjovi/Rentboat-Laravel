@@ -9,84 +9,25 @@
 			<h2 class="title"><span>популярные направления</span></h2>
 			    <div class="flipster">
 					<ul>
-						<li>
-							<img class="lazyload" data-src="img/popular-slider.jpg" alt="">
-							<a href="#">смотреть лодки ></a>
-							<div class="caption">
-								<h3>Мальдивы</h3>
-								<p>Индийский океан & Чистейшие острова</p>
-							</div>
-						</li>
-						<li>
-							<img class="lazyload" data-src="img/popular-slider.jpg" alt="">
-							<a href="#">смотреть лодки ></a>
-							<div class="caption">
-								<h3>Мальдивы</h3>
-								<p>Индийский океан & Чистейшие острова</p>
-							</div>
-						</li>
-						<li>
-							<img class="lazyload" data-src="img/popular-slider.jpg" alt="">
-							<a href="#">смотреть лодки ></a>
-							<div class="caption">
-								<h3>Мальдивы</h3>
-								<p>Индийский океан & Чистейшие острова</p>
-							</div>
-						</li>
-						<li>
-							<img class="lazyload" data-src="img/popular-slider.jpg" alt="">
-							<a href="#">смотреть лодки ></a>
-							<div class="caption">
-								<h3>Мальдивы</h3>
-								<p>Индийский океан & Чистейшие острова</p>
-							</div>
-						</li>
-						<li>
-							<img class="lazyload" data-src="img/popular-slider.jpg" alt="">
-							<a href="#">смотреть лодки ></a>
-							<div class="caption">
-								<h3>Мальдивы</h3>
-								<p>Индийский океан & Чистейшие острова</p>
-							</div>
-						</li>
-						<li>
-							<img class="lazyload" data-src="img/popular-slider.jpg" alt="">
-							<a href="#">смотреть лодки ></a>
-							<div class="caption">
-								<h3>Мальдивы</h3>
-								<p>Индийский океан & Чистейшие острова</p>
-							</div>
-						</li>
-						<li>
-							<img class="lazyload" data-src="img/popular-slider.jpg" alt="">
-							<a href="#">смотреть лодки ></a>
-							<div class="caption">
-								<h3>Мальдивы</h3>
-								<p>Индийский океан & Чистейшие острова</p>
-							</div>
-						</li>
-						<li>
-							<img class="lazyload" data-src="img/popular-slider.jpg" alt="">
-							<a href="#">смотреть лодки ></a>
-							<div class="caption">
-								<h3>Мальдивы</h3>
-								<p>Индийский океан & Чистейшие острова</p>
-							</div>
-						</li>
-						<li>
-							<img class="lazyload" data-src="img/popular-slider.jpg" alt="">
-							<a href="#">смотреть лодки ></a>
-							<div class="caption">
-								<h3>Мальдивы</h3>
-								<p>Индийский океан & Чистейшие острова</p>
-							</div>
-						</li>
+						@foreach($overall_cities as $city)
+							<li>
+								<img class="lazyload" data-src="{{ Storage::url('/'.$city->image ) }}" alt="">
+								<a href="/{{ Config::get('app.locale') }}/catalog/location/{{ $city->slug }}">смотреть лодки ></a>
+								<div class="caption">
+									<?php
+									//dd($city->name);
+									?>
+									<h3>{{ $city->name }}</h3>
+									<p>{{ $city->description }}</p>
+								</div>
+							</li>
+						@endforeach
 					</ul>
 				</div>
 				<div class="popular-slider-bottom">
 					<!-- <div class="swiper-button-prev"></div>
 					<div class="swiper-button-next"></div> -->
-					<a href="#" class="btn">смотреть все локации</a>
+					<a href="/{{ Config::get('app.locale') }}/catalog" class="btn">смотреть все локации</a>
 					
 				</div>				
 		</div>
@@ -94,37 +35,7 @@
 
 	<div class="steps">
 		<div class="container">
-			<h2 class="title"><span>4 простых шага для незабываемого путешествия на яхте</span></h2>
-			<div class="step-items">
-				<div class="step-item">
-					<div class="step-item-img">
-						<img class="lazyload" data-src="img/11.png" alt="">
-						<img class="lazyload" data-src="img/21.png" alt="" class="hid">
-					</div>
-					<h4>Выберите понравившуюся лодку</h4>
-				</div>
-				<div class="step-item">
-					<div class="step-item-img">
-						<img class="lazyload" data-src="img/12.png" alt="">
-						<img class="lazyload" data-src="img/22.png" alt="" class="hid">
-					</div>
-					<h4>Осуществите бронирование на удобную дату</h4>
-				</div>
-				<div class="step-item">
-					<div class="step-item-img">
-						<img class="lazyload" data-src="img/14.png" alt="">
-						<img class="lazyload" data-src="img/24.png" alt="" class="hid">
-					</div>
-					<h4>Наслаждайтесь незабываемым отдыхом</h4>
-				</div>
-				<div class="step-item">
-					<div class="step-item-img">
-						<img class="lazyload" data-src="img/13.png" alt="">
-						<img class="lazyload" data-src="img/23.png" alt="" class="hid">
-					</div>
-					<h4>Оплатите аренду удобным вам способом</h4>
-				</div>
-			</div>
+			{!! setting('site.4steps') !!}
 		</div>
 	</div>
 	<div class="best-items">
@@ -135,7 +46,7 @@
 					<div class="col">
 						<div class="product-item">
 							<div class="product-item-img">
-								<img class="lazyload" data-src="{{ $boat->mainpic }}" alt="{{ $boat->name }}">
+								<img class="lazyload" data-src="{{ Storage::url('/catalog/'.$boat->mainpic ) }}" alt="{{ $boat->name }}">
 							</div>
 							<div class="product-item-caption">
 								<span class="product-item-cat">{{ $boat->type_name }}</span>
@@ -173,14 +84,13 @@
 					</div>‭
 				@endforeach
 			</div>
-			<a href="{{ route('boats.index') }}" class="more">смотреть все лодки</a>
+			<a href="{{ route('boats.index', app()->getLocale()) }}" class="more">смотреть все лодки</a>
 		</div>
 	</div>
 
 	<div class="main-banner">
 		<div class="container">
-			<h2 class="title">Получите скидку 5% на первый заказ</h2>
-			<p>Акция действительна только для зарегистрированных пользователей</p>
+			{!! setting('site.discount') !!}
 			<a href="#reg-modal" class="btn">зарегистрироваться</a>
 		</div>
 	</div>
@@ -479,23 +389,7 @@
 
 	<div class="owner">
 		<div class="container">
-			<h2 class="title"><span>Вы являетесь владельцем яхты?</span></h2>
-			<p>3 простых шага для оценки стоимости аренды Вашей яхты</p>
-			<div class="owner-items flex">
-				<div class="owner-item flex">
-					<div class="owner-item-img"><img class="lazyload" data-src="img/rudder.png"></div>
-					<h4>Оставьте <br> заявку на сайте</h4>
-				</div>
-				<div class="owner-item flex">
-					<div class="owner-item-img"><img class="lazyload" data-src="img/finish.png"></div>
-					<h4>Получите наше <br> предложение</h4>
-				</div>
-				<div class="owner-item flex">
-					<div class="owner-item-img"><img class="lazyload" data-src="img/rudder.png"></div>
-					<h4>Зарабатывайте <br> вместе с нами</h4>
-				</div>
-			</div>
-			<a href="#add-modal" class="btn">Оставить заявку</a>
+			{!! setting('site.youowner') !!}
 		</div>
 	</div>
 
@@ -633,49 +527,21 @@
 		<div class="container">
 			<div class="top-title">
 				<h2 class="title"><span>интересные статьи</span></h2>
-				<a href="#" class="btn">читать все статьи</a>
+				<a href="/{{ Config::get('app.locale') }}/blog" class="btn">читать все статьи</a>
 			</div>
 			<div class="row flex">
-				<div class="col">
-					<div class="news-item">
-						<span class="label">21 сентября, 2020</span>
-						<div class="news-item-img"><img class="lazyload" data-src="img/news.jpg" alt=""></div>
-						<div class="news-item-caption">
-							<h4><a href="#">Как выбирать себе яхту на день рождения?</a></h4>
-							<p>Какой то краткий текст о том почему нужно выбирать себе яхту для путешествия</p>
+				@foreach($overall_posts as $post)
+					<div class="col">
+						<div class="news-item">
+							<span class="label">{{ $post->created_at }}</span>
+							<div class="news-item-img"><img class="lazyload" data-src="img/news.jpg" alt=""></div>
+							<div class="news-item-caption">
+								<h4><a href="#">{{ $post->title }}</a></h4>
+								<p>{{ $post->excerpt }}</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col">
-					<div class="news-item">
-						<span class="label">21 сентября, 2020</span>
-						<div class="news-item-img"><img class="lazyload" data-src="img/news.jpg" alt=""></div>
-						<div class="news-item-caption">
-							<h4><a href="#">Как выбирать себе яхту на день рождения?</a></h4>
-							<p>Какой то краткий текст о том почему нужно выбирать себе яхту для путешествия</p>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="news-item">
-						<span class="label">21 сентября, 2020</span>
-						<div class="news-item-img"><img class="lazyload" data-src="img/news.jpg" alt=""></div>
-						<div class="news-item-caption">
-							<h4><a href="#">Как выбирать себе яхту на день рождения?</a></h4>
-							<p>Какой то краткий текст о том почему нужно выбирать себе яхту для путешествия</p>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="news-item">
-						<span class="label">21 сентября, 2020</span>
-						<div class="news-item-img"><img class="lazyload" data-src="img/news.jpg" alt=""></div>
-						<div class="news-item-caption">
-							<h4><a href="#">Как выбирать себе яхту на день рождения?</a></h4>
-							<p>Какой то краткий текст о том почему нужно выбирать себе яхту для путешествия</p>
-						</div>
-					</div>
-				</div>
+				@endforeach
 			</div>
 		</div>
 	</div>
@@ -683,15 +549,7 @@
 	<div class="about-text">
 		<div class="container">
 			<h2 class="title"><span>о нашей компании</span></h2>
-			<p>Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более менее осмысленного текста рыбы на русском языке, а начинающему оратору отточить навык публичных выступлений в домашних условиях рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более менее осмысленного текста рыбы на русском языке, а начинающему оратору отточить навык публичных выступлений в домашних условиях рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более менее осмысленного текста рыбы на русском языке, а начинающему оратору отточить навык публичных выступлений в домашних условиях.</p>
-			<strong>Какой-то небольшой подзаголовок:</strong>
-			<ul>
-				<li>Lorem Ipsum is simply dummy text of the printing when an unknown printer took a galley of type</li>
-				<li>Advice and Assistance Investing</li>
-				<li>Comprehensive Support for Your Business</li>
-				<li>Lorem Ipsum is simply dummy text of the printing when an unknown</li>
-				<li>Advice and Assistance Investing</li>
-			</ul>
+			{!! setting('site.about') !!}
 		</div>
     </div>
     @endsection

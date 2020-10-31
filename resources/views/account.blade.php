@@ -33,12 +33,12 @@
 			<div class="right">
 				<ul class="breadcrumb-menu flex">
 					<li class="active"><a href="#">Личные данные</a></li>
-					<li><a href="#">Сообщения <span>14</span></a></li>
+					<!--<li><a href="#">Сообщения <span>14</span></a></li>-->
 					<li><a href="#">История заказов</a></li>
 					<li><a href="#">Мои лодки</a></li>
-					<li><a href="#">Избранное</a></li>
+					<!--<li><a href="#">Избранное</a></li>-->
 				</ul>
-				<h4>Alexander Makedonsky</h4>
+				<h4>{{ Auth::user()->name }} {{ Auth::user()->last_name }}</h4>
 				<p>Зарегистрирован с 21 сентября, 2020 года</p>
 			</div>
 		</div>		
@@ -77,7 +77,7 @@
 			</div>
 			<a href="#" class="btn cabinet-save">сохранить изменения</a>
 
-			<form id="logout-form" action="{{ route('logout') }}" method="POST">
+			<form id="logout-form" action="{{ route('logout') }}" method="POST" style="margin-top:20px;">
 				{{ csrf_field() }}
 				<button class="btn cabinet-save">Выйти</button>
 			</form>

@@ -7,14 +7,16 @@ use App\Boat;
 use App\Review;
 use App\Country;
 use App\City;
+use App\User;
 use Carbon\Carbon;
 
 use App\Http\Controllers\Session;
-use App\Http\Controllers\Validator;
+use Validator;
+use Input;
 
 class BoatController extends Controller
 {
-    public function index(Request $request) {
+    public function index($language, Request $request) {
 
 
 
@@ -202,21 +204,33 @@ class BoatController extends Controller
             ->join('cities', 'boats.city_id', '=', 'cities.id')
             ->join('countries', 'cities.country_id', '=', 'countries.id')
             ->where($filter_queries_array)
+            ->where('is_approved', 1)
             ->orderBy($orderByField, $orderByValue)
             ->take($limit)
-            ->get();
+            ->get()->translate($language);
 
         return view('catalog', compact('boats'));
     }
 
-    public function search(Request $request) {
+    public function search($language, Request $request) {
         $query = $request->input('query');
-        $boats = Boat::where('name', 'like', "%$query%")->get();
+        $boats = Boat::select(
+            'boats.*',
+            'types.name as type_name',
+            'cities.name as city_name',
+            'countries.name as country_name'
+        )
+            ->join('types', 'boats.type_id', '=', 'types.id')
+            ->join('cities', 'boats.city_id', '=', 'cities.id')
+            ->join('countries', 'cities.country_id', '=', 'countries.id')
+            ->where('boats.name', 'like', "%$query%")
+            ->where('is_approved', 1)
+            ->get()->translate($language);
 
         return view('catalog-searchresults', compact('boats'));
     }
 
-    public function type($slug) {
+    public function type($language, $slug) {
         $boats = Boat::select(
             'boats.*',
             'types.name as type_name',
@@ -227,11 +241,32 @@ class BoatController extends Controller
             ->join('cities', 'boats.city_id', '=', 'cities.id')
             ->join('countries', 'cities.country_id', '=', 'countries.id')
             ->where('types.slug', $slug)
-            ->get();
+            ->where('is_approved', 1)
+            ->get()->translate($language);
+
+        $type = $slug;
+
+        return view('catalog', compact('boats', 'type'));
+    }
+
+    public function city($language, $slug) {
+        $boats = Boat::select(
+            'boats.*',
+            'types.name as type_name',
+            'cities.name as city_name',
+            'countries.name as country_name'
+        )
+            ->join('types', 'boats.type_id', '=', 'types.id')
+            ->join('cities', 'boats.city_id', '=', 'cities.id')
+            ->join('countries', 'cities.country_id', '=', 'countries.id')
+            ->where('cities.slug', $slug)
+            ->where('is_approved', 1)
+            ->get()->translate($language);
+
         return view('catalog', compact('boats'));
     }
 
-    public function boat($slug) {
+    public function boat($language, $slug) {
         $boat = Boat::select(
             'boats.*',
             'types.name as type_name',
@@ -241,7 +276,13 @@ class BoatController extends Controller
             ->join('types', 'boats.type_id', '=', 'types.id')
             ->join('cities', 'boats.city_id', '=', 'cities.id')
             ->join('countries', 'cities.country_id', '=', 'countries.id')
-            ->where('slug', $slug)
+            ->where('boats.slug', '=', $slug)
+            ->firstOrFail()->translate($language);
+
+        $owner = User::select(
+            'users.*'
+        )
+            ->where('id', '=', $boat->owner_id)
             ->firstOrFail();
 
         $reviews = Review::select(
@@ -258,80 +299,57 @@ class BoatController extends Controller
             ->join('cities', 'boats.city_id', '=', 'cities.id')
             ->join('countries', 'cities.country_id', '=', 'countries.id')
             ->get();
-        return view('product', compact('boat', 'reviews'));
+        return view('product', compact('boat', 'reviews', 'owner'));
     }
 
     public function store(Request $request)
     {
-
-        $messages = [
-            'addboat_name.required' => 'Поле "Название" должно быть заполнено',
-//            'name.min' => 'Поле "Название" должно быть длиной не менее 2-х символов',
-//            'painter.required' => 'Поле "Художник" должно быть заполнено',
-//            'style.required' => 'Поле "Стиль" должно быть заполнено',
-//            'material.required' => 'Поле "Материал" должно быть заполнено',
-//            'surface.required' => 'Поле "Поверхность" должно быть заполнено',
-//            'theme.required' => 'Поле "Тема" должно быть заполнено',
-//            'dimension_width.required' => 'Поле "Ширина" должно быть заполнено',
-//            'dimension_width.numeric' => 'Поле "Ширина" должно быть числом',
-//            'dimension_height.required' => 'Поле "Высота" должно быть заполнено',
-//            'dimension_height.numeric' => 'Поле "Высота" должно быть числом',
-//            'image.required' => 'Поле "Фото" должно быть заполнено',
-//            'price.numeric' => 'Поле "Цена" должно быть числом',
-//            'year.numeric' => 'Поле "Год" должно быть числом',
-        ];
-
-//        $v = \Validator::make($request->all(), [
-//            'name' => 'required|min:2',
-//            'city_id' => 'required|numeric',
-//            'type_id' => 'required|numeric',
-//            'year' => 'required|numeric',
-//            'size' => 'required|numeric',
-//            'guests_qty' => 'required|numeric',
-//            'bedrooms_qty' => 'required|numeric',
-//            'sleepers_qty' => 'required|numeric',
-//            'showers_qty' => 'required|numeric',
-//            'with_capitan' => '',
-//            'instant_confirmation' => '',
-//            'fuel_included' => '',
-//            'description' => '',
-
-//        ], $messages);
-
-//        if ($v->fails())
-//        {
-//            return redirect()->back()->withErrors($v->errors())->withInput();
-//            //return $v;
-//        }
-
-        $this->validate($request, [
+        $validator = $this->validate($request, [
             'addboat_name' => 'required|min:2',
             'addboat_description' => 'required|min:2',
-            //'addboat_mainpic' => 'mimes:jpeg,png|max:5000',
-            'addboat_mainpic' => 'required',
+            'addboat_mainpic' => 'required|mimes:jpeg,jpg,png,gif|max:5000',
+//            'addboat_thumbnail1' => 'required|mimes:jpeg,jpg,png|max:5000',
+//            'addboat_thumbnail2' => 'required|mimes:jpeg,jpg,png|max:5000',
+//            'addboat_thumbnail3' => 'required|mimes:jpeg,jpg,png|max:5000',
             'addboat_country' => 'required|min:2',
             'addboat_city' => 'required|min:2',
             'addboat_type' => 'required',
             'addboat_year' => 'required|integer',
             'addboat_size' => 'required|min:1|integer',
-            'addboat_guests_qty' => 'required',
-            'addboat_bedrooms_qty' => 'required',
-            'addboat_sleepers_qty' => 'required',
-            'addboat_showers_qty' => 'required',
-//            'name' => 'required|max:100',
-//            'slug' => 'required|max:100|unique:categories,slug|regex:~^[-_a-z0-9]+$~i',
-//            'image' => 'mimes:jpeg,png|max:5000'
+            'addboat_guests_qty' => 'required|min:1|integer',
+            'addboat_bedrooms_qty' => 'required|min:1|integer',
+            'addboat_sleepers_qty' => 'required|min:1|integer',
+            'addboat_showers_qty' => 'required|min:1|integer',
+            'addboat_owner_avatar' => 'required|mimes:jpeg,jpg,png,gif|max:5000',
+            'addboat_owner_name' => 'required|min:2',
+            'addboat_owner_last_name' => 'required|min:2',
+            'addboat_owner_email' => 'required|min:2|email',
+            'addboat_owner_phone' => 'required|min:2',
         ]);
 
-        $file = $request->file('addboat_mainpic');
+        $mainpic = $request->file('addboat_mainpic');
+        if ($mainpic) { $mainpic_path = $mainpic->store('catalog', 'public'); }
+
+        $thumbnail1 = $request->file('addboat_thumbnail1');
+        if ($thumbnail1) { $thumbnail1_path = $thumbnail1->store('catalog', 'public'); }
+
+        $thumbnail2 = $request->file('addboat_thumbnail2');
+        if ($thumbnail2) { $thumbnail2_path = $thumbnail2->store('catalog', 'public'); }
+
+        $thumbnail3 = $request->file('addboat_thumbnail3');
+        if ($thumbnail3) { $thumbnail3_path = $thumbnail3->store('catalog', 'public'); }
+
+        $documents = $request->file('addboat_documents');
+        if ($documents) { $documents_path = $documents->store('catalog', 'public'); }
+
+        $owner_avatar = $request->file('addboat_owner_avatar');
+        if ($owner_avatar) { $owner_avatar_path = $owner_avatar->store('catalog', 'public'); }
 
 
-        if ($file) { // был загружен файл изображения
-            $path = $file->store('catalog', 'public');
-            //$base = basename($path);
-        }
 
-        //dd($request->file('mainpic'));
+
+
+
 
         $country = Country::create([
             'name' => $request->addboat_country
@@ -339,15 +357,28 @@ class BoatController extends Controller
 
         $city = City::create([
             'name' => $request->addboat_city,
+            'slug' => $request->addboat_city_slug,
             'country_id' => $country->id
+        ]);
+
+        $user = User::create([
+            'name' => $request->addboat_owner_name,
+            'last_name' => $request->addboat_owner_last_name,
+            'email' => $request->addboat_owner_email,
+            'phone' => $request->addboat_owner_phone,
+            //'avatar' => basename($owner_avatar_path),
+            'role_id' => 3,
+            'password' => '0',
         ]);
 
         $product = Boat::create([
             'name' => $request->addboat_name,
             'slug' => $request->addboat_slug,
             'description' => $request->addboat_description,
-            'mainpic' => basename($path),
-            'thumbnails' => 'test',
+            'mainpic' => basename($mainpic_path),
+            'thumbnail1' => 'test',
+            'thumbnail2' => 'test',
+            'thumbnail3' => 'test',
             'city_id' => $city->id,
             'type_id' => $request->addboat_type,
             'year' => $request->addboat_year,
@@ -361,20 +392,13 @@ class BoatController extends Controller
             'fuel_included' => 1,
             'additionally_included' => 'test',
             'documents' => 'test',
-
-            'price' => 123,
-            'saleprice' => 456,
+            'owner_id' => $user->id,
+            'price' => 0,
+            'saleprice' => 0,
+            'is_approved' => 0,
         ]);
 
-//        $product->fill([
-//            'slug' => $product->slug
-//        ]);
-//
-//        $product->fill([
-//            'painter_id' => (int)$painter_id
-//        ]);
-
-        //\Session::flash('message', 'Лодка была успешно добавлена');
+        \Session::flash('message', 'Лодка была успешно добавлена');
 
         return redirect()
             ->route('mainpage.index', ['product' => $product->id])

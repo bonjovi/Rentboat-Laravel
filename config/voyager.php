@@ -10,6 +10,8 @@ return [
     |
     */
 
+
+
     'user' => [
         'add_default_role_on_register' => true,
         'default_role'                 => 'user',
@@ -99,19 +101,20 @@ return [
         /*
          * Set whether or not the multilingual is supported by the BREAD input.
          */
-        'enabled' => false,
+        'enabled' => true,
 
         /*
          * Select default language
          */
-        'default' => 'en',
+        'default' => 'ru',
 
         /*
          * Select languages that are supported.
          */
         'locales' => [
+            'ru',
             'en',
-            //'pt',
+            'sp',
         ],
     ],
 

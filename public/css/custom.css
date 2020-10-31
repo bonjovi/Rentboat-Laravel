@@ -2,7 +2,7 @@
     cursor: pointer;
 }
 
-.register-button, .boat-adding-button {
+.register-button, .boat-adding-button, .addreview_button {
     background: #C0232A;
     border-radius: 4px;
     font-family: 'Circe';
@@ -18,11 +18,16 @@
     height: 50px;
     line-height: 48px;
     cursor: pointer;
-    width: 100%;
+    padding: 0 40px;
+    /*width: 100%;*/
 }
 
 .invalid-feedback {
     color: #C0232A;
     margin: 0 0 15px 0;
     display: block;
+}
+
+header.main-header .top {
+    background: #fff;
 }

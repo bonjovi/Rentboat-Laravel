@@ -10,17 +10,17 @@
 			<h2 class="title">КАТАЛОГ ЛОДОК</h2>
 
 			<ul class="breadcrumb-menu flex">
-				<li class="active"><a href="#">All boats</a></li>
-				<li><a href="#">Sailboat</a></li>
-				<li><a href="#">Motorboat</a></li>
-				<li><a href="#">Catamaran</a></li>
+				<li @if(!isset($type)) class="active" @endif><a href="/catalog">All boats</a></li>
+				<li @if(isset($type) && $type == 'sailboat') class="active" @endif><a href="/catalog/type/sailboat">Sailboat</a></li>
+				<li @if(isset($type) && $type == 'motorboat') class="active" @endif><a href="/catalog/type/motorboat">Motorboat</a></li>
+				<li @if(isset($type) && $type == 'catamaran') class="active" @endif><a href="/catalog/type/catamaran">Catamaran</a></li>
 			</ul>
 		</div>
 	</div>
 
 	<div class="catalog-block">
 		<div class="container">
-			<form action="{{ route('boats.index') }}" method="GET">
+			<form action="{{ route('boats.index', app()->getLocale()) }}" method="GET">
 				@csrf
 			<div class="top-filter header-bottom flex">
 				<a href="#" class="filter-btn">Фильтр</a>
@@ -256,7 +256,7 @@
 							@endif
 
 
-							<a href="{{ route('boats.index') }}" class="delete">Очистить все</a>
+							<a href="{{ route('boats.index', app()->getLocale()) }}" class="delete">Очистить все</a>
 						@endif
 
 						<!--<span>1990 - 2016 г. <a href="#"></a></span>
@@ -269,7 +269,7 @@
 							<div class="col">
 								<div class="product-item">
 									<div class="product-item-img">
-										<img src="{{ $boat->mainpic }}" alt="{{ $boat->name }}">
+										<img src="{{ Storage::url('/catalog/'.$boat->mainpic ) }}" alt="{{ $boat->name }}">
 									</div>
 									<div class="product-item-caption">
 										<span class="product-item-cat">{{ $boat->type_name }}</span>
@@ -289,18 +289,18 @@
 										<div class="product-item-city">{{ $boat->city_name }} <span>/ {{ $boat->country_name }}</span></div>
 										<div class="product-item-info flex">
 											<div>
-												<img src="img/people.png" alt=""> {{ $boat->guests_qty }}
+												<img src="/img/people.png" alt=""> {{ $boat->guests_qty }}
 											</div>
 											<div>
-												<img src="img/bed.png" alt=""> {{ $boat->bedrooms_qty }}
+												<img src="/img/bed.png" alt=""> {{ $boat->bedrooms_qty }}
 											</div>
 											<div>
-												<img src="img/boat.png" alt=""> {{ $boat->size }} ft
+												<img src="/img/boat.png" alt=""> {{ $boat->size }} ft
 											</div>
 										</div>
 										<div class="product-item-bottom flex">
-											<a href="/catalog/{{ $boat->slug }}" class="btn">подробнее</a>
-											<a href="#" class="wish"></a>
+											<a href="/{{ Config::get('app.locale') }}/catalog/{{ $boat->slug }}" class="btn">подробнее</a>
+											<!--<a href="#" class="wish"></a>-->
 										</div>
 									</div>
 								</div>
@@ -323,9 +323,9 @@
 				</div>
 			</div>
 
-			<div class="catalog-bottom">
+			<!--<div class="catalog-bottom">
 				<p>Показано <b>1 - 12</b> из <b>325</b> лодок</p>
-			</div>
+			</div>-->
 		</div>
     </div>
     @endsection

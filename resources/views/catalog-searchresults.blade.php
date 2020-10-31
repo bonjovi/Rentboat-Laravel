@@ -10,10 +10,10 @@
 			<h2 class="title">КАТАЛОГ ЛОДОК</h2>
 
 			<ul class="breadcrumb-menu flex">
-				<li class="active"><a href="#">All boats</a></li>
-				<li><a href="#">Sailboat</a></li>
-				<li><a href="#">Motorboat</a></li>
-				<li><a href="#">Catamaran</a></li>
+				<li><a href="/catalog">All boats</a></li>
+				<li><a href="/catalog/type/sailboat">Sailboat</a></li>
+				<li><a href="/catalog/type/motorboat">Motorboat</a></li>
+				<li><a href="/catalog/type/catamaran">Catamaran</a></li>
 			</ul>
 		</div>
 	</div>
@@ -180,7 +180,7 @@
 							<div class="col">
 								<div class="product-item">
 									<div class="product-item-img">
-										<img src="{{ $boat->mainpic }}" alt="{{ $boat->name }}">
+										<img src="{{ Storage::url('/catalog/'.$boat->mainpic ) }}" alt="{{ $boat->name }}">
 									</div>
 									<div class="product-item-caption">
 										<span class="product-item-cat">{{ $boat->type_name }}</span>
@@ -211,7 +211,7 @@
 										</div>
 										<div class="product-item-bottom flex">
 											<a href="/catalog/{{ $boat->slug }}" class="btn">подробнее</a>
-											<a href="#" class="wish"></a>
+											<!--<a href="#" class="wish"></a>-->
 										</div>
 									</div>
 								</div>

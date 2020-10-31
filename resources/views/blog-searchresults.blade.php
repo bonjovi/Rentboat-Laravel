@@ -10,10 +10,10 @@
             <h2 class="title">useful BLOG</h2>
 
             <ul class="breadcrumb-menu flex">
-                <li class="active"><a href="#">All boats</a></li>
-                <li><a href="#">Sailboat</a></li>
-                <li><a href="#">Motorboat</a></li>
-                <li><a href="#">Catamaran</a></li>
+                <li><a href="/catalog">All boats</a></li>
+                <li><a href="/catalog/type/sailboat">Sailboat</a></li>
+                <li><a href="/catalog/type/motorboat">Motorboat</a></li>
+                <li><a href="/catalog/type/catamaran">Catamaran</a></li>
             </ul>
         </div>
     </div>

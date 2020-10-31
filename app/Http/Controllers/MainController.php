@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Boat;
 use App\Review;
 use App\Country;
+use App\City;
 
 class MainController extends Controller
 {
@@ -19,6 +20,7 @@ class MainController extends Controller
             ->join('types', 'boats.type_id', '=', 'types.id')
             ->join('cities', 'boats.city_id', '=', 'cities.id')
             ->join('countries', 'cities.country_id', '=', 'countries.id')
+            ->where('is_approved', 1)
             ->get();
         $mainpage = true;
 
@@ -46,8 +48,9 @@ class MainController extends Controller
             ->get();
 
         $countries = Country::all();
+        $cities = City::all();
 
-        return view('index', compact('boats', 'mainpage', 'reviews', 'countries'));
+        return view('index', compact('boats', 'mainpage', 'reviews', 'countries', 'cities'));
     }
 
     public function catalog() {
